@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Main.gd" type="Script" id=2]
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 30, 1, 30 )
@@ -15,11 +16,12 @@ albedo_color = Color( 0.996078, 0.443137, 0, 1 )
 
 [sub_resource type="Curve3D" id=5]
 _data = {
-"points": PoolVector3Array( 0, 0, 0, 0, 0, 0, -21.4593, 0, -21.6844, 0, 0, 0, 0, 0, 0, -21.6142, 0, -24.6907, 0, 0, 0, 0, 0, 0, 17.67, 0, -24.2174, 0, 0, 0, 0, 0, 0, 18.7744, 0, 21.8508, 0, 0, 0, 0, 0, 0, -21.9297, 0, 22.9552 ),
+"points": PoolVector3Array( 0, 0, 0, 0, 0, 0, -23.0373, 0.0209694, -26.3366, 0, 0, 0, 0, 0, 0, 17.4805, 0.0198631, -24.9474, 0, 0, 0, 0, 0, 0, 18.9855, -0.017746, 22.2848, 0, 0, 0, 0, 0, 0, -22.69, -0.0184822, 23.2109, 0, 0, 0, 0, 0, 0, -23.0373, 0.0209694, -26.3366 ),
 "tilts": PoolRealArray( 0, 0, 0, 0, 0 )
 }
 
 [node name="Main" type="Node"]
+script = ExtResource( 2 )
 
 [node name="Ground" type="StaticBody" parent="."]
 
@@ -70,5 +72,13 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -22, 1, 22 )
 mesh = SubResource( 3 )
 material/0 = SubResource( 4 )
 
-[node name="Path" type="Path" parent="."]
+[node name="SpawnPath" type="Path" parent="."]
 curve = SubResource( 5 )
+
+[node name="SpawnLocation" type="PathFollow" parent="SpawnPath"]
+transform = Transform( 0.855318, 9.8709e-05, 0.518104, -0.000449976, 1, 0.000552329, -0.518104, -0.000705552, 0.855318, -23.0373, 0.0209694, -26.3366 )
+
+[node name="MobTimer" type="Timer" parent="."]
+wait_time = 0.7
+autostart = true
+[connection signal="timeout" from="MobTimer" to="." method="_on_MobTimer_timeout"]
