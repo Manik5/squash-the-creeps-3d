@@ -41,10 +41,6 @@ shadow_enabled = true
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
 transform = Transform( 0.999837, 0.00280605, -0.017843, -0.00343159, 0.999377, -0.0351238, 0.0177334, 0.0351793, 0.999224, 0, -0.136907, 0 )
-speed = null
-jump_impulse = null
-fall_acceleraton = null
-bounce_impulse = null
 
 [node name="CameraPivot" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 0.608498, 0.793555, 0, -0.793555, 0.608498, 0, 0, 0 )
